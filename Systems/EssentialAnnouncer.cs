@@ -19,10 +19,10 @@ namespace Essentials
 
             InitConfig();
             LoadAnnounces();
-            CreateCommands();
+            CreateConsoleCommands();
         }
 
-        void CreateCommands()
+        void CreateConsoleCommands()
         {
             SConsoleCommand reloadAnnouncerCommand = new SConsoleCommand("reloadannouncer", "Reload announcer config", "reloadannouncer", (args) =>
             {
@@ -32,6 +32,8 @@ namespace Essentials
             SConsoleCommand createAnnounceCommand = new SConsoleCommand("createannounce", "Create an announce", "createannounce <message> <seconds interval>", (args) =>
             {
                 List<Announce> announces = new List<Announce>();
+
+                Debug.Log(JsonUtility.ToJson(args));
 
                 for (int i = 0; i < config.announces.Length; i++)
                     announces.Add(config.announces[i]);

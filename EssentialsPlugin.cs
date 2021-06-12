@@ -2,6 +2,7 @@
 using Life;
 using System.IO;
 using UnityEngine;
+using Life.UI;
 
 namespace Essentials
 {
@@ -12,6 +13,9 @@ namespace Essentials
         public EssentialsConfig config;
 
         private readonly EssentialAnnouncer announcer = new EssentialAnnouncer();
+        private readonly EssentialAdmin admin = new EssentialAdmin();
+
+        private LifeServer server;
 
         public EssentialsPlugin(IGameAPI api) : base(api)
         {
@@ -22,9 +26,17 @@ namespace Essentials
         {
             base.OnPluginInit();
 
+            server = Nova.server;
+
             InitDirectory();
 
-            announcer.Init(this, Nova.server);
+            announcer.Init(this, server);
+            admin.Init(this, server);
+        }
+
+        public override void OnPlayerInput(Player player, KeyCode keyCode, bool onUI)
+        {
+            base.OnPlayerInput(player, keyCode, onUI);
         }
 
         void InitDirectory()

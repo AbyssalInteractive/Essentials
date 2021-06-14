@@ -8,6 +8,7 @@ using Life.VehicleSystem;
 using Mirror;
 using Life.PermissionSystem;
 using Life.DB;
+using Life.AreaSystem;
 
 namespace Essentials
 {
@@ -184,7 +185,7 @@ namespace Essentials
             {
                 if (player.IsAdmin)
                 {
-                    if(args.Length > 0)
+                    if (args.Length > 0)
                     {
                         if (int.TryParse(args[0], out int vehicleDbId))
                         {
@@ -427,7 +428,7 @@ namespace Essentials
                 player.ShowPanelUI(vAdminPanel);
             });
 
-            SChatCommand serviceAdminCommand = new SChatCommand("/serviceadmin", new string[] { "/sa", "/adminservice" }, "Admin service", "/serviceadmin", (player, args) => 
+            SChatCommand serviceAdminCommand = new SChatCommand("/serviceadmin", new string[] { "/sa", "/adminservice" }, "Admin service", "/serviceadmin", (player, args) =>
             {
                 if (player.IsAdmin)
                 {
@@ -594,6 +595,156 @@ namespace Essentials
                 }
             });
 
+            SChatCommand editTerrainCommand = new SChatCommand("/terrain", new string[] { "/t" }, "Edit the terrain that you're in", "/t(errain", (player, args) =>
+            {
+                if (!player.IsAdmin)
+                    return;
+
+                UIPanel terrainPanel = new UIPanel("Gestion terrain", UIPanel.PanelType.Tab)
+                    .AddButton("Fermer", (ui) =>
+                    {
+                        player.ClosePanel(ui);
+                    })
+                    .AddButton("Sélectionner", (ui) =>
+                    {
+                        ui.SelectTab();
+                    })
+                    .AddTabLine("Modifier propriétaire", (ui) =>
+                    {
+                        UIPanel proprioPanel = new UIPanel("Modification du proprio", UIPanel.PanelType.Input)
+                        .SetInputPlaceholder("ID perso...")
+                        .AddButton("Fermer", (ui2) =>
+                        {
+                            player.ClosePanel(ui2);
+                        })
+                        .AddButton("Valider", (ui2) =>
+                        {
+                            int proprio = int.Parse(ui2.inputText);
+
+                            if (player.setup.areaId > 0)
+                            {
+                                LifeArea area = Nova.a.GetAreaById(player.setup.areaId);
+
+                                area.permissions = new Permissions() { owner = new Entity() { characterId = proprio } };
+
+                                area.Save();
+
+                                player.SendText("Propriétaire modifié !");
+                                player.ClosePanel(ui2);
+                            }
+                        });
+
+                        player.ShowPanelUI(proprioPanel);
+                    })
+                     .AddTabLine("Modifier prix location", (ui) =>
+                     {
+                         UIPanel pricePanel = new UIPanel("Modification du prix de location", UIPanel.PanelType.Input)
+                         .SetInputPlaceholder("Prix...")
+                         .AddButton("Fermer", (ui2) =>
+                         {
+                             player.ClosePanel(ui2);
+                         })
+                         .AddButton("Valider", (ui2) =>
+                         {
+                             int price = int.Parse(ui2.inputText);
+
+                             if (player.setup.areaId > 0)
+                             {
+                                 LifeArea area = Nova.a.GetAreaById(player.setup.areaId);
+
+                                 area.rentPrice = price;
+
+                                 if (area.rentPrice > 0)
+                                 {
+                                     area.isRentable = true;
+                                 }
+                                 else
+                                 {
+                                     area.isRentable = false;
+                                 }
+
+                                 area.Save();
+
+                                 player.SendText("Prix de location modifié !");
+                                 player.ClosePanel(ui2);
+                             }
+                         });
+
+                         player.ShowPanelUI(pricePanel);
+                     })
+                    .AddTabLine("Modifier prix", (ui) =>
+                    {
+                        UIPanel pricePanel = new UIPanel("Modification du prix", UIPanel.PanelType.Input)
+                        .SetInputPlaceholder("Prix...")
+                        .AddButton("Fermer", (ui2) =>
+                        {
+                            player.ClosePanel(ui2);
+                        })
+                        .AddButton("Valider", (ui2) =>
+                        {
+                            int price = int.Parse(ui2.inputText);
+
+                            if (player.setup.areaId > 0)
+                            {
+                                LifeArea area = Nova.a.GetAreaById(player.setup.areaId);
+
+                                area.price = price;
+
+                                area.Save();
+
+                                player.SendText("Prix modifié !");
+                                player.ClosePanel(ui2);
+                            }
+                        });
+
+                        player.ShowPanelUI(pricePanel);
+                    });
+
+                player.ShowPanelUI(terrainPanel);
+            });
+
+            SChatCommand giveBcrCommand = new SChatCommand("/givebcr", new string[] { "/addbcr" }, "Give bcr to nearest player or yourself", "/givebcr", (player, args) =>
+            {
+                if (!player.IsAdmin)
+                    return;
+
+                Player closestPlayer = player.GetClosestPlayer();
+
+                if (closestPlayer != null)
+                {
+                    closestPlayer.character.HasBCR = true;
+                    closestPlayer.setup.TargetLockCFM(false);
+
+                    closestPlayer.SendText($"<color={LifeServer.COLOR_RED}>Un administrateur vous a donné le BCR.</color>");
+                }else
+                {
+                    player.character.HasBCR = true;
+                    player.setup.TargetLockCFM(false);
+
+                    player.SendText($"<color={LifeServer.COLOR_RED}>Vous vous êtes donné le BCR.</color>");
+                }
+            });
+
+            SChatCommand dayCommand = new SChatCommand("/day", "Set day", "/day", (player, args) =>
+            {
+                EnviroSkyMgr.instance.SetTimeOfDay(12.0f);
+            });
+
+            SChatCommand nightCommand = new SChatCommand("/night", "Set night", "/night", (player, args) =>
+            {
+                EnviroSkyMgr.instance.SetTimeOfDay(20.0f);
+            });
+
+            SChatCommand morningCommand = new SChatCommand("/morning", "Set morning", "/morning", (player, args) =>
+            {
+                EnviroSkyMgr.instance.SetTimeOfDay(8.0f);
+            });
+
+            dayCommand.Register();
+            nightCommand.Register();
+            morningCommand.Register();
+            giveBcrCommand.Register();
+            editTerrainCommand.Register();
             setAdminCommand.Register();
             flipCommand.Register();
             bcrCommand.Register();

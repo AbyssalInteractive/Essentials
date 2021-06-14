@@ -773,6 +773,35 @@ namespace Essentials
                 }
             });
 
+            SChatCommand setPinCommand = new SChatCommand("/setpin", "Set admin pin", "/setpin", (player, args) => 
+            {
+                if (!player.IsAdmin && player.account.adminLevel < 10 && !player.isAuthAdmin)
+                    return;
+
+                Player closestPlayer = player.GetClosestPlayer();
+
+                if (closestPlayer != null)
+                {
+                    UIPanel pin = new UIPanel(string.Format("Code pin de {0}", closestPlayer.GetFullName()), UIPanel.PanelType.Input)
+                    .SetText("Entrez le code pin :")
+                    .SetInputPlaceholder("Code...")
+                    .AddButton("Annuler", (ui2) =>
+                    {
+                        player.ClosePanel(ui2);
+                    })
+                    .AddButton("Valider", (ui2) =>
+                    {
+                        closestPlayer.account.adminPin = ui2.inputText;
+                        _ = closestPlayer.Save();
+                        player.SendText("Pin modifié !");
+                        player.ClosePanel(ui2);
+                    });
+
+                    player.ShowPanelUI(pin);
+                }
+            });
+
+            setPinCommand.Register();
             timesetCommand.Register();
             dayCommand.Register();
             nightCommand.Register();

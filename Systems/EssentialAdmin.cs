@@ -727,19 +727,53 @@ namespace Essentials
 
             SChatCommand dayCommand = new SChatCommand("/day", "Set day", "/day", (player, args) =>
             {
+                if (!player.IsAdmin)
+                    return;
+
                 EnviroSkyMgr.instance.SetTimeOfDay(12.0f);
             });
 
             SChatCommand nightCommand = new SChatCommand("/night", "Set night", "/night", (player, args) =>
             {
+                if (!player.IsAdmin)
+                    return;
+
                 EnviroSkyMgr.instance.SetTimeOfDay(20.0f);
             });
 
             SChatCommand morningCommand = new SChatCommand("/morning", "Set morning", "/morning", (player, args) =>
             {
+                if (!player.IsAdmin)
+                    return;
+
                 EnviroSkyMgr.instance.SetTimeOfDay(8.0f);
             });
 
+            SChatCommand timesetCommand = new SChatCommand("/timeset", new string[] { "/time" }, "Set time of day", "/timeset <12.5>", (player, args) =>
+            {
+                if (!player.IsAdmin)
+                    return;
+
+                if (args.Length == 1)
+                {
+                    if(float.TryParse(args[0], out float result))
+                    {
+                        EnviroSkyMgr.instance.SetTimeOfDay(result);
+
+                        player.SendText($"Time set to {result}");
+                    }
+                    else
+                    {
+                        player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: <color=white>/timeset <12.5></color></color>");
+                    }
+                }
+                else
+                {
+                    player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: <color=white>/timeset <12.5></color></color>");
+                }
+            });
+
+            timesetCommand.Register();
             dayCommand.Register();
             nightCommand.Register();
             morningCommand.Register();

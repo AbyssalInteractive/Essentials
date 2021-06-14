@@ -749,7 +749,7 @@ namespace Essentials
                 EnviroSkyMgr.instance.SetTimeOfDay(8.0f);
             });
 
-            SChatCommand timesetCommand = new SChatCommand("/timeset", new string[] { "/time" }, "Set time of day", "/timeset <12.5>", (player, args) =>
+            SChatCommand timesetCommand = new SChatCommand("/timeset", new string[] { "/time" }, "Set time of day", "/timeset <12,5>", (player, args) =>
             {
                 if (!player.IsAdmin)
                     return;
@@ -764,12 +764,12 @@ namespace Essentials
                     }
                     else
                     {
-                        player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: <color=white>/timeset <12.5></color></color>");
+                        player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: <color=white>/timeset <12,5></color></color>");
                     }
                 }
                 else
                 {
-                    player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: <color=white>/timeset <12.5></color></color>");
+                    player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: <color=white>/timeset <12,5></color></color>");
                 }
             });
 

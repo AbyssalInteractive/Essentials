@@ -223,7 +223,7 @@ namespace Essentials
 
             SChatCommand stowAllCommand = new SChatCommand("/stowallvehicle", new string[] { "/stowallveh", "/stowall" }, "Stow all spawned vehicle on the map", "/stow(allveh)", (player, args) =>
             {
-                if (player.character.RankId >= 9)
+                if (player.account.adminLevel >= 9)
                 {
                     Vehicle[] vehicles = GameObject.FindObjectsOfType<Vehicle>();
 
@@ -440,12 +440,12 @@ namespace Essentials
 
                     if (player.serviceAdmin)
                     {
-                        player.setup.isAdminService = false;
+                        player.SetAdminService(false);
                         player.SendText(string.Format("<color={0}>Service admin désactivé !</color>", LifeServer.COLOR_RED));
                     }
                     else
                     {
-                        player.setup.isAdminService = true;
+                        player.SetAdminService(true);
                         player.SendText(string.Format("<color={0}>Service admin activé !</color>", LifeServer.COLOR_GREEN));
                     }
 
@@ -801,6 +801,86 @@ namespace Essentials
                 }
             });
 
+            SChatCommand forwardCommand = new SChatCommand("/forward", "Move vehicle forward", "/forward", (player, args) =>
+            {
+                if (player.IsAdmin)
+                {
+                    uint vehicleId = player.GetVehicleId();
+
+                    if (vehicleId > 0)
+                    {
+                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(NetworkIdentity.spawned[vehicleId].transform.forward);
+
+                        NetworkIdentity.spawned[vehicleId].transform.position += NetworkIdentity.spawned[vehicleId].transform.forward;
+                    }
+                    else
+                    {
+                        player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
+                    }
+                }
+            });
+
+            SChatCommand backwardCommand = new SChatCommand("/backward", "Move vehicle backward", "/backward", (player, args) =>
+            {
+                if (player.IsAdmin)
+                {
+                    uint vehicleId = player.GetVehicleId();
+
+                    if (vehicleId > 0)
+                    {
+                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(-NetworkIdentity.spawned[vehicleId].transform.forward);
+
+                        NetworkIdentity.spawned[vehicleId].transform.position -= NetworkIdentity.spawned[vehicleId].transform.forward;
+                    }
+                    else
+                    {
+                        player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
+                    }
+                }
+            });
+
+            SChatCommand rightCommand = new SChatCommand("/right", "Move vehicle right", "/right", (player, args) =>
+            {
+                if (player.IsAdmin)
+                {
+                    uint vehicleId = player.GetVehicleId();
+
+                    if (vehicleId > 0)
+                    {
+                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(NetworkIdentity.spawned[vehicleId].transform.right);
+
+                        NetworkIdentity.spawned[vehicleId].transform.position += NetworkIdentity.spawned[vehicleId].transform.right;
+                    }
+                    else
+                    {
+                        player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
+                    }
+                }
+            });
+
+            SChatCommand leftCommand = new SChatCommand("/left", "Move vehicle left", "/left", (player, args) =>
+            {
+                if (player.IsAdmin)
+                {
+                    uint vehicleId = player.GetVehicleId();
+
+                    if (vehicleId > 0)
+                    {
+                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(-NetworkIdentity.spawned[vehicleId].transform.right);
+
+                        NetworkIdentity.spawned[vehicleId].transform.position -= NetworkIdentity.spawned[vehicleId].transform.right;
+                    }
+                    else
+                    {
+                        player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
+                    }
+                }
+            });
+
+            leftCommand.Register();
+            rightCommand.Register();
+            backwardCommand.Register();
+            forwardCommand.Register();
             setPinCommand.Register();
             timesetCommand.Register();
             dayCommand.Register();

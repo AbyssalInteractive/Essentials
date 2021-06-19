@@ -9,6 +9,7 @@ using Mirror;
 using Life.PermissionSystem;
 using Life.DB;
 using Life.AreaSystem;
+using System.Collections.Generic;
 
 namespace Essentials
 {
@@ -17,6 +18,8 @@ namespace Essentials
         public static string adminConfigPath;
 
         public AnnouncerConfig config;
+
+        public Dictionary<Player, string> tickets = new Dictionary<Player, string>();
 
         public override void Init(EssentialsPlugin essentials, LifeServer server)
         {
@@ -877,6 +880,50 @@ namespace Essentials
                 }
             });
 
+            SChatCommand ticketsCommand = new SChatCommand("/tickets", "Open ticket panel", "/tickets", (player, args) =>
+            {
+                if (player.IsAdmin)
+                {
+                    UIPanel tickets = new UIPanel("Liste des tickets", UIPanel.PanelType.Tab)
+                        .AddButton("Fermer", (ui) =>
+                        {
+                            player.ClosePanel(ui);
+                        })
+                        .AddButton("Intervenir (TP)", (ui) =>
+                        {
+                            ui.SelectTab();
+                        });
+
+                    foreach (KeyValuePair<Player, string> ticket in this.tickets)
+                    {
+                        if (ticket.Key == null)
+                            continue;
+                        if (ticket.Key.conn == null)
+                            continue;
+                        if (ticket.Key.setup == null)
+                            continue;
+
+                        string value = "";
+
+                        if (ticket.Value.Length > 30)
+                            value = ticket.Value.Substring(0, 30);
+                        else
+                            value = ticket.Value;
+
+                        tickets.AddTabLine(string.Format("{0} {1} - {2}", new string[] { ticket.Key.character.Firstname, ticket.Key.character.Lastname, value }), (ui2) =>
+                        {
+                            player.ClosePanel(ui2);
+                            player.setup.TargetSetPosition(ticket.Key.setup.transform.position);
+                            ticket.Key.ticketOpen = false;
+                            this.tickets.Remove(ticket.Key);
+                        });
+                    }
+
+                    player.ShowPanelUI(tickets);
+                }
+            });
+
+            ticketsCommand.Register();
             leftCommand.Register();
             rightCommand.Register();
             backwardCommand.Register();
@@ -905,6 +952,21 @@ namespace Essentials
             refuelAllCommand.Register();
             refuelCommand.Register();
             changeNumberCommand.Register();
+        }
+
+        public void OnPlayerTicket(Player player, string ticket)
+        {
+            tickets.Add(player, ticket);
+            player.ticketOpen = true;
+
+            for (int i = 0; i < server.Players.Count; i++)
+            {
+                if (server.Players[i].IsAdmin && server.Players[i].serviceAdmin)
+                {
+                    string text = string.Format("Nouveau ticket de {0} {1}. Message : {2}. \n /tickets pour voir la liste des tickets", new string[] { player.character.Firstname, player.character.Lastname, ticket });
+                    server.Players[i].SendText(text);
+                }
+            }
         }
 
         async void CreateVehicle(Player player, int vehicleId, Permissions permissions)

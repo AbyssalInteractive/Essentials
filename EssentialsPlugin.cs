@@ -5,6 +5,7 @@ using UnityEngine;
 using Life.UI;
 using Mirror;
 using Life.DB;
+using System.Linq;
 
 namespace Essentials
 {
@@ -41,6 +42,64 @@ namespace Essentials
         public override void OnPlayerInput(Player player, KeyCode keyCode, bool onUI)
         {
             base.OnPlayerInput(player, keyCode, onUI);
+
+            if(keyCode == KeyCode.N && !onUI)
+            {
+                if (player.ticketOpen)
+                {
+                    UIPanel ticketPanel = new UIPanel("Ticket support", UIPanel.PanelType.Text)
+                        .SetText("Vous avez déjà un ticket actif !")
+                        .AddButton("Fermer", (ui) => { player.ClosePanel(ui); })
+                        .AddButton("Clôturer mon ticket", (ui) => {
+                            player.ticketOpen = false;
+                            admin.tickets.Remove(player);
+                            player.ClosePanel(ui);
+                        });
+
+                    player.ShowPanelUI(ticketPanel);
+                }
+                else
+                {
+                    UIPanel ticketPanel = new UIPanel("Ticket support", UIPanel.PanelType.Input)
+                    .SetInputPlaceholder("Quel est votre problème ?")
+                    .AddButton("Fermer", (ui) => { player.ClosePanel(ui); })
+                    .AddButton("Envoyer", (ui) => {
+                        if (player.ticketOpen)
+                            player.SendText(string.Format("<color={0}>Vous avez déjà un ticket d'ouvert.</color>", LifeServer.COLOR_RED));
+                        else
+                        {
+                            player.ClosePanel(ui);
+
+                            if (ui.inputText != null || ui.inputText.Length > 0)
+                            {
+                                admin.OnPlayerTicket(player, ui.inputText);
+                                player.SendText(string.Format("<color={0}>Votre ticket a bien été envoyé à l'équipe de modération.</color>", LifeServer.COLOR_GREEN));
+                            }
+                            else
+                            {
+                                player.SendText($"<color={LifeServer.COLOR_RED}>Vous ne pouvez pas envoyer un ticket vide.</color>");
+                            }
+                        }
+                    });
+                    player.ShowPanelUI(ticketPanel);
+                }
+            }
+        }
+
+        public override void OnPlayerDisconnect(NetworkConnection conn)
+        {
+            base.OnPlayerDisconnect(conn);
+
+            Player player = server.Players.Where(p => p.conn == conn).FirstOrDefault();
+
+            if (player != null)
+            {
+                if (server.Players.Contains(player))
+                {
+                    if (admin.tickets.ContainsKey(player))
+                        admin.tickets.Remove(player);
+                }
+            }
         }
 
         void InitDirectory()

@@ -719,7 +719,7 @@ namespace Essentials
                     closestPlayer.setup.TargetLockCFM(false);
 
                     closestPlayer.SendText($"<color={LifeServer.COLOR_RED}>Un administrateur vous a donné le BCR.</color>");
-                }else
+                } else
                 {
                     player.character.HasBCR = true;
                     player.setup.TargetLockCFM(false);
@@ -759,7 +759,7 @@ namespace Essentials
 
                 if (args.Length == 1)
                 {
-                    if(float.TryParse(args[0], out float result))
+                    if (float.TryParse(args[0], out float result))
                     {
                         EnviroSkyMgr.instance.SetTimeOfDay(result);
 
@@ -776,7 +776,7 @@ namespace Essentials
                 }
             });
 
-            SChatCommand setPinCommand = new SChatCommand("/setpin", "Set admin pin", "/setpin", (player, args) => 
+            SChatCommand setPinCommand = new SChatCommand("/setpin", "Set admin pin", "/setpin", (player, args) =>
             {
                 if (!player.IsAdmin && player.account.adminLevel < 10 && !player.isAuthAdmin)
                     return;
@@ -923,6 +923,20 @@ namespace Essentials
                 }
             });
 
+            SChatCommand annoCommand = new SChatCommand("/announce", new string[] { "/anno", "/annonce" }, "Announce in admin", "/anno(unce) <message>", (player, args) =>
+            {
+                string text = "";
+
+                for (int i = 0; i < args.Length; i++)
+                    text += $"{args[i]} ";
+
+                if(player.IsAdmin && player.isAuthAdmin)
+                {
+                    server.SendMessageToAll($"<color={LifeServer.COLOR_RED}>[ANNONCE]</color> {text}");
+                }
+            });
+
+            annoCommand.Register();
             ticketsCommand.Register();
             leftCommand.Register();
             rightCommand.Register();

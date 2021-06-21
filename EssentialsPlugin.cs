@@ -86,6 +86,13 @@ namespace Essentials
             }
         }
 
+        public override void OnPlayerSpawnCharacter(Player player, NetworkConnection conn, Characters character)
+        {
+            base.OnPlayerSpawnCharacter(player, conn, character);
+
+            
+        }
+
         public override void OnPlayerDisconnect(NetworkConnection conn)
         {
             base.OnPlayerDisconnect(conn);

@@ -628,7 +628,7 @@ namespace Essentials
                             {
                                 LifeArea area = Nova.a.GetAreaById(player.setup.areaId);
 
-                                area.permissions = new Permissions() { owner = new Entity() { characterId = proprio } };
+                                area.permissions = new Permissions() { owner = new Entity() { characterId = proprio }, coOwners = new List<Entity>() };
 
                                 area.Save();
 

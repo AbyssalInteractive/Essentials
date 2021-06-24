@@ -936,6 +936,28 @@ namespace Essentials
                 }
             });
 
+            SChatCommand unbanCommand = new SChatCommand("/unban", "Unban player", "/unban", (player, args) =>
+            {
+                if (!player.IsAdmin)
+                    return;
+
+                UIPanel passPanel = new UIPanel("Unban", UIPanel.PanelType.Input)
+                .AddButton("Fermer", (ui) =>
+                {
+                    player.ClosePanel(ui);
+                })
+                .AddButton("Débannir", (ui) =>
+                {
+                    int id = int.Parse(ui.inputText);
+
+                    Unban(id);
+
+                    player.ClosePanel(ui);
+                });
+
+                player.ShowPanelUI(passPanel);
+            });
+
             annoCommand.Register();
             ticketsCommand.Register();
             leftCommand.Register();
@@ -966,6 +988,11 @@ namespace Essentials
             refuelAllCommand.Register();
             refuelCommand.Register();
             changeNumberCommand.Register();
+        }
+
+        public async void Unban(int accountId)
+        {
+            await LifeDB.Unban(accountId);
         }
 
         public void OnPlayerTicket(Player player, string ticket)

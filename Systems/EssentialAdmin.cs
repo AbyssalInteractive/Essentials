@@ -10,6 +10,8 @@ using Life.PermissionSystem;
 using Life.DB;
 using Life.AreaSystem;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Essentials
 {
@@ -1049,9 +1051,13 @@ namespace Essentials
                 vehicle.instance = instance;
                 instance.vehicleDbId = vehicle.vehicleId;
                 instance.fuel = vehicle.fuel;
+
             }
 
             vehicle.isStowed = false;
+
+            await Task.Delay(2000);
+
             vehicle.Save();
         }
     }

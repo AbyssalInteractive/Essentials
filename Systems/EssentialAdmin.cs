@@ -1051,7 +1051,6 @@ namespace Essentials
                 vehicle.instance = instance;
                 instance.vehicleDbId = vehicle.vehicleId;
                 instance.fuel = vehicle.fuel;
-
             }
 
             vehicle.isStowed = false;

@@ -32,7 +32,7 @@ namespace Essentials
                     for (int i = 0; i < args.Length; i++)
                         message += $" {args[i]}";
 
-                    server.SendLocalText($"<color={LifeServer.COLOR_ME}>{player.character.Firstname} {player.character.Lastname} {message}</color>", 10f, player.setup.transform.position);
+                    server.SendLocalText($"<color={LifeServer.COLOR_ME}>{player.character.Firstname} {player.character.Lastname}{message}</color>", 10f, player.setup.transform.position);
                 }
                 else
                 {

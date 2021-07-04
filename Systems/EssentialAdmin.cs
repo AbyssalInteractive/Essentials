@@ -12,6 +12,7 @@ using Life.AreaSystem;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
+using Life.InventorySystem;
 
 namespace Essentials
 {
@@ -19,7 +20,7 @@ namespace Essentials
     {
         public static string adminConfigPath;
 
-        public AnnouncerConfig config;
+        public AdminConfig config;
 
         public Dictionary<Player, string> tickets = new Dictionary<Player, string>();
 
@@ -43,7 +44,7 @@ namespace Essentials
 
             if (!File.Exists(adminConfigPath))
             {
-                config = new AnnouncerConfig()
+                config = new AdminConfig()
                 {
 
                 };
@@ -58,7 +59,7 @@ namespace Essentials
 
                 try
                 {
-                    config = JsonConvert.DeserializeObject<AnnouncerConfig>(json);
+                    config = JsonConvert.DeserializeObject<AdminConfig>(json);
                 }
                 catch (System.Exception e)
                 {
@@ -932,7 +933,7 @@ namespace Essentials
                 for (int i = 0; i < args.Length; i++)
                     text += $"{args[i]} ";
 
-                if(player.IsAdmin && player.isAuthAdmin)
+                if (player.IsAdmin && player.isAuthAdmin)
                 {
                     server.SendMessageToAll($"<color={LifeServer.COLOR_RED}>[ANNONCE]</color> {text}");
                 }
@@ -960,6 +961,66 @@ namespace Essentials
                 player.ShowPanelUI(passPanel);
             });
 
+            SChatCommand giveCommand = new SChatCommand("/give", new string[] { "/g" }, "Give item to yourself", "/g(ive) <itemId>", (player, args) =>
+            {
+                if(player.IsAdmin)
+                {
+                    if(player.isAuthAdmin)
+                    {
+                        if(args.Length == 0 || args.Length > 2)
+                        {
+                            player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: /g(ive) <itemId> <number?></color>");
+                            return;
+                        }
+                        
+                        Item item = null;
+
+                        if(!int.TryParse(args[0], out int itemId))
+                        {
+                            item = Nova.man.item.GetItem(args[0]);
+
+                            if(item == null)
+                            {
+                                player.SendText($"<color={LifeServer.COLOR_RED}>Merci de saisir un nombre ou un nom d'item valide (e.g. /give 6 ou /give sausage)</color>");
+                                return;
+                            }
+
+                            itemId = item.id;
+                        }else
+                        {
+                            item = Nova.man.item.GetItem(itemId);
+                        }
+
+                        int number = 1;
+
+                        if(args.Length == 2 && int.TryParse(args[1], out int _number))
+                        {
+                            number = _number;
+                        }
+
+                        if(item == null)
+                        {
+                            player.SendText($"<color={LifeServer.COLOR_RED}>Cet objet n'existe pas.</color>");
+                            return;
+                        }
+
+                        if(!player.setup.inventory.AddItem(itemId, number, ""))
+                        {
+                            player.SendText($"<color={LifeServer.COLOR_RED}>Vous n'avez pas assez de place dans votre inventaire.</color>");
+                            return;
+                        }
+
+                        player.SendText($"<color={LifeServer.COLOR_GREEN}>Vous avez reçu {number}x {item.itemName}.</color>");
+                    }else
+                        player.SendText($"<color={LifeServer.COLOR_RED}>Vous n'êtes pas authentifié.</color>");
+                }
+                else
+                {
+                    player.SendText($"<color={LifeServer.COLOR_RED}>Permissions insuffissantes.</color>");
+                }
+            });
+
+            giveCommand.Register();
             annoCommand.Register();
             ticketsCommand.Register();
             leftCommand.Register();

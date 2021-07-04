@@ -1,22 +1,21 @@
 ﻿using Life.Network;
-using Life.UI;
-using Life;
 using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
-using Life.VehicleSystem;
-using Mirror;
-using Life.PermissionSystem;
-using Life.DB;
-using Life.AreaSystem;
 
 namespace Essentials
 {
     public class EssentialRoleplay : BaseEssential
     {
+        public static string roleplayConfigPath;
+
+        public RoleplayConfig config;
+
         public override void Init(EssentialsPlugin essentials, LifeServer server)
         {
             base.Init(essentials, server);
+
+            InitConfig();
 
             CreatePlayerCommands();
         }
@@ -41,6 +40,58 @@ namespace Essentials
             });
 
             meCommand.Register();
+        }
+
+        void InitConfig()
+        {
+            roleplayConfigPath = $"{EssentialsPlugin.essentialDirectoryPath}/roleplay.json";
+
+            if (!File.Exists(roleplayConfigPath))
+            {
+                config = new RoleplayConfig()
+                {
+
+                };
+
+                string json = JsonConvert.SerializeObject(config);
+
+                File.WriteAllText(roleplayConfigPath, json);
+            }
+            else
+            {
+                string json = File.ReadAllText(roleplayConfigPath);
+
+                try
+                {
+                    config = JsonConvert.DeserializeObject<RoleplayConfig>(json);
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogException(e);
+                }
+            }
+
+            InitEconomy();
+        }
+
+        void InitEconomy()
+        {
+            server.economy.startBank = config.startBank;
+            server.economy.startMoney = config.startMoney;
+        }
+    }
+
+    [System.Serializable]
+    public class RoleplayConfig
+    {
+        public int startMoney = 500;
+        public int startBank;
+
+        public void Save()
+        {
+            string json = JsonConvert.SerializeObject(this);
+
+            File.WriteAllText(EssentialRoleplay.roleplayConfigPath, json);
         }
     }
 }

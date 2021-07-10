@@ -16,7 +16,6 @@ namespace Essentials
             base.Init(essentials, server);
 
             InitConfig();
-
             CreatePlayerCommands();
         }
 

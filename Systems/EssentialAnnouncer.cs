@@ -20,6 +20,10 @@ namespace Essentials
             InitConfig();
             LoadAnnounces();
             CreateConsoleCommands();
+
+            ServerNews discordNews = new ServerNews("Serveur Discord Santos Life", "Nous avons créé un serveur discord... blabla bla", "Valentin", "05/07/2021");
+
+            discordNews.Register();
         }
 
         void CreateConsoleCommands()

@@ -18,6 +18,7 @@ namespace Essentials
         private readonly EssentialAnnouncer announcer = new EssentialAnnouncer();
         private readonly EssentialAdmin admin = new EssentialAdmin();
         private readonly EssentialRoleplay roleplay = new EssentialRoleplay();
+        private readonly EssentialsGlobal global = new EssentialsGlobal();
 
         private LifeServer server;
 
@@ -37,6 +38,7 @@ namespace Essentials
             announcer.Init(this, server);
             admin.Init(this, server);
             roleplay.Init(this, server);
+            global.Init(this, server);
         }
 
         public override void OnPlayerInput(Player player, KeyCode keyCode, bool onUI)

@@ -35,7 +35,6 @@ namespace Essentials
                 }
 
                 List<SChatCommand> commands = server.chat.commands;
-                player.SendText($"{commands.Count}");
 
                 player.SendText($"<color={LifeServer.COLOR_ORANGE}>====== Liste des commandes ({page+1}/{Math.Ceiling(commands.Count/5.0)}) ======</color>");
 

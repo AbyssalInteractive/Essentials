@@ -70,13 +70,15 @@ namespace Essentials
                 }
             }
 
-            InitEconomy();
+            Setup();
         }
 
-        void InitEconomy()
+        void Setup()
         {
             server.economy.startBank = config.startBank;
             server.economy.startMoney = config.startMoney;
+            server.world.maxRentsPerCharacter = config.maxRentsPerCharacter;
+            server.world.maxTerrainsPerCharacter = config.maxTerrainsPerCharacter;
         }
     }
 
@@ -85,6 +87,8 @@ namespace Essentials
     {
         public int startMoney = 500;
         public int startBank;
+        public ushort maxTerrainsPerCharacter = 3;
+        public ushort maxRentsPerCharacter = 1;
 
         public void Save()
         {

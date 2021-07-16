@@ -91,12 +91,9 @@ namespace Essentials
         public override void OnPlayerSpawnCharacter(Player player, NetworkConnection conn, Characters character)
         {
             base.OnPlayerSpawnCharacter(player, conn, character);
-
-            Debug.Log(config.giveBcr);
-            Debug.Log(character.HasBCR);
+            
             if(config.giveBcr && !character.HasBCR)
             {
-                Debug.Log("give bcr");
                 character.HasBCR = true;
             }
         }

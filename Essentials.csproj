@@ -37,6 +37,7 @@
     <Compile Include="Systems\EssentialAdmin.cs" />
     <Compile Include="Systems\EssentialAnnouncer.cs" />
     <Compile Include="Systems\EssentialRoleplay.cs" />
+    <Compile Include="Systems\EssentialsGlobal.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />

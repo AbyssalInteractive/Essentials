@@ -91,8 +91,11 @@ namespace Essentials
         public override void OnPlayerSpawnCharacter(Player player, NetworkConnection conn, Characters character)
         {
             base.OnPlayerSpawnCharacter(player, conn, character);
-
             
+            if(config.giveBcr && !character.HasBCR)
+            {
+                character.HasBCR = true;
+            }
         }
 
         public override void OnPlayerDisconnect(NetworkConnection conn)
@@ -148,6 +151,7 @@ namespace Essentials
     public class EssentialsConfig
     {
         public string serverName;
+        public bool giveBcr;
 
         public void Save()
         {

@@ -6,6 +6,7 @@ using Life.UI;
 using Mirror;
 using Life.DB;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Essentials
 {
@@ -139,7 +140,12 @@ namespace Essentials
                 try
                 {
                     config = JsonUtility.FromJson<EssentialsConfig>(json);
-                }catch(System.Exception e)
+
+                    string newJson = JsonConvert.SerializeObject(config);
+
+                    File.WriteAllText(essentialConfigPath, json);
+                }
+                catch(System.Exception e)
                 {
                     Debug.LogException(e);   
                 }

@@ -44,10 +44,7 @@ namespace Essentials
 
             if (!File.Exists(adminConfigPath))
             {
-                config = new AdminConfig()
-                {
-
-                };
+                config = new AdminConfig();
 
                 string json = JsonConvert.SerializeObject(config);
 
@@ -60,6 +57,10 @@ namespace Essentials
                 try
                 {
                     config = JsonConvert.DeserializeObject<AdminConfig>(json);
+
+                    string newJson = JsonConvert.SerializeObject(config);
+
+                    File.WriteAllText(adminConfigPath, json);
                 }
                 catch (System.Exception e)
                 {

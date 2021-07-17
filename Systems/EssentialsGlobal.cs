@@ -9,8 +9,6 @@ namespace Essentials
 {
     class EssentialsGlobal : BaseEssential
     {
-        private LifeServer server;
-
         public override void Init(EssentialsPlugin essentials, LifeServer server)
         {
             base.Init(essentials, server);

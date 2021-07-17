@@ -60,6 +60,10 @@ namespace Essentials
                 try
                 {
                     config = JsonConvert.DeserializeObject<RoleplayConfig>(json);
+
+                    string newJson = JsonConvert.SerializeObject(config);
+
+                    File.WriteAllText(roleplayConfigPath, json);
                 }
                 catch (System.Exception e)
                 {

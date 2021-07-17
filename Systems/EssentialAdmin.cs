@@ -405,6 +405,43 @@ namespace Essentials
                     })
                     .AddTabLine("Créer véhicule", (ui) =>
                     {
+                        UIPanel vPanel = new UIPanel("Véhicule", UIPanel.PanelType.Tab)
+                            .AddButton("Fermer", (ui1) =>
+                            {
+                                player.ClosePanel(ui1);
+                            })
+                            .AddButton("Sélectionner", (ui1) =>
+                            {
+                                ui1.SelectTab();
+                            });
+                        for (int i = 0; i < Nova.v.vehicleModels.Length; i++)
+                        {
+                            Vehicle vehicle = Nova.v.vehicleModels[i];
+
+                            if (!vehicle.isDeprecated)
+                            {
+                                vPanel.AddTabLine(vehicle.vehicleName, (ui1) =>
+                                {
+                                    int vehicleId = i;
+                                    string vStr = string.Format("{0}", vehicle.vehicleName).ToLower();
+
+                                    Permissions permissions = new Permissions()
+                                    {
+                                        owner = new Entity()
+                                        {
+                                            characterId = player.character.Id
+                                        }
+                                    };
+
+                                    CreateVehicle(player, vehicleId, permissions);
+                                });
+                            }
+
+                        }
+                        player.ShowPanelUI(vPanel);
+                    })
+                    .AddTabLine("Créer véhicule par id", (ui) =>
+                    {
                         UIPanel createVehicle = new UIPanel("Créer véhicule", UIPanel.PanelType.Input)
                         .AddButton("Fermer", (ui2) =>
                         {
@@ -429,6 +466,161 @@ namespace Essentials
                         });
 
                         player.ShowPanelUI(createVehicle);
+                    })
+                    .AddTabLine("Définir la couleur", (ui) =>
+                    {
+                        if (player.GetVehicleId() == 0)
+                        {
+                            player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
+                            return;
+                        }
+
+                        uint vehicleId = player.GetVehicleId();
+                        UIPanel vehColorPanel = new UIPanel("Définir la couleur du véhicule", UIPanel.PanelType.Tab)
+                        .AddButton("Fermer", (ui1) =>
+                        {
+                            player.ClosePanel(ui1);
+                        })
+                        .AddButton("Valider", (ui1) =>
+                        {
+                            ui1.SelectTab();
+                        })
+                        .AddTabLine("<color=#ffffff>#ffffff</color>", (ui1) => //Blanc
+                        {
+                            Color color = Nova.HexToColor("#ffffff");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#777777>#777777</color>", (ui1) => //Gris Clair
+                        {
+                            Color color = Nova.HexToColor("#777777");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#555555>#555555</color>", (ui1) => //Gris
+                        {
+                            Color color = Nova.HexToColor("#555555");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#333333>#333333</color>", (ui1) => //Gris Foncé
+                        {
+                            Color color = Nova.HexToColor("#333333");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#000000>#000000</color>", (ui1) => //Noir
+                        {
+                            Color color = Nova.HexToColor("#000000");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#ff0000>#ff0000</color>", (ui1) => //Rouge
+                        {
+                            Color color = Nova.HexToColor("#ff0000");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#7b0000>#7b0000</color>", (ui1) => //Rouge Foncé
+                        {
+                            Color color = Nova.HexToColor("#7b0000");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#ffff00>#ffff00</color>", (ui1) => //Jaune
+                        {
+                            Color color = Nova.HexToColor("#ffff00");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#7b7b00>#7b7b00</color>", (ui1) => //Jaune Foncé
+                        {
+                            Color color = Nova.HexToColor("#7b7b00");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#00ff00>#00ff00</color>", (ui1) => // Vert
+                        {
+                            Color color = Nova.HexToColor("#00ff00");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#007b00>#007b00</color>", (ui1) => // Vert Foncé
+                        {
+                            Color color = Nova.HexToColor("#007b00");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#00ffff>#00ffff</color>", (ui1) => // Vert
+                        {
+                            Color color = Nova.HexToColor("#00ffff");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#007b7b>#007b7b</color>", (ui1) => // Vert Foncé
+                        {
+                            Color color = Nova.HexToColor("#007b7b");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#0000ff>#0000ff</color>", (ui1) => // Bleu
+                        {
+                            Color color = Nova.HexToColor("#0000ff");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#00007b>#00007b</color>", (ui1) => // Bleu Foncé
+                        {
+                            Color color = Nova.HexToColor("#00007b");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#ff00ff>#ff00ff</color>", (ui1) => // Rose
+                        {
+                            Color color = Nova.HexToColor("#ff00ff");
+                            ColorVehicle(vehicleId, color);
+                        })
+                        .AddTabLine("<color=#7b007b>#7b007b</color>", (ui1) => // Violet
+                        {
+                            Color color = Nova.HexToColor("#7b007b");
+                            ColorVehicle(vehicleId, color);
+                        });
+
+                        player.ShowPanelUI(vehColorPanel);
+                    })
+                    .AddTabLine("Définir la couleur par html", (ui => player.ShowPanelUI(new UIPanel("Modifier la couleur", UIPanel.PanelType.Input)
+                    .AddButton("Annuler", (ui2 => player.ClosePanel(ui2)))
+                    .AddButton("Valider", (ui2 =>
+                    {
+                        Color color = Nova.HexToColor(ui2.inputText);
+                        uint vehicleId = player.GetVehicleId();
+                        if (vehicleId > 0U)
+                        {
+                            Vehicle component = NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>();
+                            component.Networkcolor = color;
+                            LifeVehicle vehicle = Nova.v.GetVehicle(component.plate);
+                            if (vehicle != null)
+                            {
+                                vehicle.color = Nova.ColorToHex(color);
+                                vehicle.Save();
+                            }
+                        }
+                        else
+                            player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
+                    })).SetInputPlaceholder("#ffffff"))))
+                    .AddTabLine("Refuel", (ui) =>
+                    {
+                        Vehicle vehicle = player.GetClosestVehicle();
+
+                        if (vehicle)
+                        {
+                            vehicle.fuel = 100f;
+                        }
+                    })
+                    .AddTabLine("Réparer", (ui) =>
+                    {
+                        Vehicle vehicle = player.GetClosestVehicle();
+
+                        if (vehicle != null)
+                        {
+                            vehicle.Repair();
+                            player.ClosePanel(ui);
+                            player.SendText(string.Format("<color={0}> Véhicule réparé avec succès.</color>", LifeServer.COLOR_GREEN));
+                        }
+                    })
+                    .AddTabLine("Ranger", (ui) =>
+                    {
+                        Vehicle vehicle = player.GetClosestVehicle();
+
+                        if (vehicle != null && vehicle.vehicleDbId > 0)
+                        {
+                            Nova.v.StowVehicle(vehicle.vehicleDbId);
+                        }
                     });
 
                 player.ShowPanelUI(vAdminPanel);
@@ -1119,6 +1311,18 @@ namespace Essentials
             await Task.Delay(2000);
 
             vehicle.Save();
+        }
+
+        void ColorVehicle(uint vehicleId, Color color)
+        {
+            Vehicle component = NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>();
+            component.Networkcolor = color;
+            LifeVehicle vehicle = Nova.v.GetVehicle(component.plate);
+            if (vehicle != null)
+            {
+                vehicle.color = Nova.ColorToHex(color);
+                vehicle.Save();
+            }
         }
     }
 

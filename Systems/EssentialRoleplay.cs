@@ -47,10 +47,7 @@ namespace Essentials
 
             if (!File.Exists(roleplayConfigPath))
             {
-                config = new RoleplayConfig()
-                {
-
-                };
+                config = new RoleplayConfig();
 
                 string json = JsonConvert.SerializeObject(config);
 

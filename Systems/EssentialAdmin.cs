@@ -1212,6 +1212,50 @@ namespace Essentials
                 }
             });
 
+            SChatCommand weatherCommand = new SChatCommand("/weather", new string[] { "/w" }, "Set weather", "/w(eather) <clear;cloudy;foggy;lightrain;rain;storm>", (player, args) =>
+            {
+                if(player.IsAdmin)
+                {
+                    if (player.isAuthAdmin)
+                    {
+                        if(args.Length != 1)
+                        {
+                            player.SendText($"<color={LifeServer.COLOR_RED}>USAGE: /w(eather) <clear;cloudy;foggy;lightrain;rain;storm></color>");
+                            return;
+                        }
+
+                        switch(args[0])
+                        {
+                            case "clear":
+                                server.world.SetWeather(Life.Network.Systems.SWorld.Weather.ClearSky);
+                                break;
+                            case "cloudy":
+                                server.world.SetWeather(Life.Network.Systems.SWorld.Weather.Cloudy1);
+                                break;
+                            case "foggy":
+                                server.world.SetWeather(Life.Network.Systems.SWorld.Weather.Foggy);
+                                break;
+                            case "lightrain":
+                                server.world.SetWeather(Life.Network.Systems.SWorld.Weather.LightRain);
+                                break;
+                            case "rain":
+                                server.world.SetWeather(Life.Network.Systems.SWorld.Weather.HeavyRain);
+                                break;
+                            case "storm":
+                                server.world.SetWeather(Life.Network.Systems.SWorld.Weather.Storm);
+                                break;
+                        }
+                    }
+                    else
+                        player.SendText($"<color={LifeServer.COLOR_RED}>Vous n'êtes pas authentifié.</color>");
+                }
+                else
+                {
+                    player.SendText($"<color={LifeServer.COLOR_RED}>Permissions insuffissantes.</color>");
+                }
+            });
+
+            weatherCommand.Register();
             giveCommand.Register();
             annoCommand.Register();
             ticketsCommand.Register();

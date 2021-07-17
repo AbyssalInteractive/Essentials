@@ -62,7 +62,7 @@ namespace Essentials
             {
                 config = new AnnouncerConfig() 
                 { 
-                    announces = new Announce[] { new Announce() { message = "This is an announce example. You can config this message in Plugins/Essentials/announcer.json", secondsInterval = 30f } }
+                    announces = new Announce[] { new Announce() { message = "This is an announce example. You can config this message in Plugins/Essentials/announcer.json", secondsInterval = 300f } }
                 };
 
                 string json = JsonConvert.SerializeObject(config);

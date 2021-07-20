@@ -9,6 +9,11 @@ namespace Essentials
 {
     class EssentialsGlobal : BaseEssential
     {
+        /// <summary>
+        /// Init this class
+        /// </summary>
+        /// <param name="essentials"></param>
+        /// <param name="server"></param>
         public override void Init(EssentialsPlugin essentials, LifeServer server)
         {
             base.Init(essentials, server);
@@ -17,7 +22,9 @@ namespace Essentials
             CreatePlayerCommands();
         }
 
-
+        /// <summary>
+        /// Create all player commands
+        /// </summary>
         void CreatePlayerCommands()
         {
             SChatCommand helpCommand = new SChatCommand("/help", "List all commands", "/help (page)", (player, args) =>

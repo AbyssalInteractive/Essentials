@@ -20,10 +20,19 @@ namespace Essentials
     {
         public static string adminConfigPath;
 
-        public AdminConfig config;
+        public Dictionary<Player, string> tickets
+        {
+            get => tickets;
+            private set => new Dictionary<Player, string>();
+        }
 
-        public Dictionary<Player, string> tickets = new Dictionary<Player, string>();
+        private AdminConfig config;
 
+        /// <summary>
+        /// Init Essential Admin system
+        /// </summary>
+        /// <param name="essentials"></param>
+        /// <param name="server"></param>
         public override void Init(EssentialsPlugin essentials, LifeServer server)
         {
             base.Init(essentials, server);
@@ -33,11 +42,17 @@ namespace Essentials
             CreateAdminCommands();
         }
 
+        /// <summary>
+        /// Create console commands
+        /// </summary>
         void CreateConsoleCommands()
         {
 
         }
 
+        /// <summary>
+        /// Create admin configuration file or read it
+        /// </summary>
         void InitConfig()
         {
             adminConfigPath = $"{EssentialsPlugin.essentialDirectoryPath}/admin.json";
@@ -69,6 +84,9 @@ namespace Essentials
             }
         }
 
+        /// <summary>
+        /// Create all admin commands
+        /// </summary>
         void CreateAdminCommands()
         {
             SChatCommand changeNumberCommand = new SChatCommand("/changenumber", "Change the phone number of the nearest player", "/changenumber", (player, args) =>
@@ -415,15 +433,17 @@ namespace Essentials
                             {
                                 ui1.SelectTab();
                             });
+
                         for (int i = 0; i < Nova.v.vehicleModels.Length; i++)
                         {
                             Vehicle vehicle = Nova.v.vehicleModels[i];
 
                             if (!vehicle.isDeprecated)
                             {
+                                int vehId = i;
                                 vPanel.AddTabLine(vehicle.vehicleName, (ui1) =>
                                 {
-                                    int vehicleId = i;
+                                    int vehicleId = vehId;
                                     string vStr = string.Format("{0}", vehicle.vehicleName).ToLower();
 
                                     Permissions permissions = new Permissions()

@@ -13,6 +13,11 @@ namespace Essentials
 
         public AnnouncerConfig config;
 
+        /// <summary>
+        /// Init Essential Announcer system
+        /// </summary>
+        /// <param name="essentials"></param>
+        /// <param name="server"></param>
         public override void Init(EssentialsPlugin essentials, LifeServer server)
         {
             base.Init(essentials, server);
@@ -22,6 +27,9 @@ namespace Essentials
             CreateConsoleCommands();
         }
 
+        /// <summary>
+        /// Create all console commands
+        /// </summary>
         void CreateConsoleCommands()
         {
             SConsoleCommand reloadAnnouncerCommand = new SConsoleCommand("reloadannouncer", "Reload announcer config", "reloadannouncer", (args) =>
@@ -54,6 +62,9 @@ namespace Essentials
             createAnnounceCommand.Register();
         }
 
+        /// <summary>
+        /// Create announcer configuration file or read it
+        /// </summary>
         void InitConfig()
         {
             announcerConfigPath = $"{EssentialsPlugin.essentialDirectoryPath}/announcer.json";
@@ -84,6 +95,9 @@ namespace Essentials
             }
         }
 
+        /// <summary>
+        /// Load all announces in configuration and run coroutines
+        /// </summary>
         void LoadAnnounces()
         {
             for(int i = 0; i < config.announces.Length; i++)
@@ -94,6 +108,11 @@ namespace Essentials
             }
         }
 
+        /// <summary>
+        /// Send delayed announce
+        /// </summary>
+        /// <param name="announce"></param>
+        /// <returns></returns>
         public IEnumerator SendAnnounce(Announce announce)
         {
             yield return new WaitForSeconds(announce.secondsInterval);

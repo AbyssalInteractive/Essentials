@@ -11,6 +11,11 @@ namespace Essentials
 
         public RoleplayConfig config;
 
+        /// <summary>
+        /// Init EssentialRoleplay system
+        /// </summary>
+        /// <param name="essentials"></param>
+        /// <param name="server"></param>
         public override void Init(EssentialsPlugin essentials, LifeServer server)
         {
             base.Init(essentials, server);
@@ -19,6 +24,9 @@ namespace Essentials
             CreatePlayerCommands();
         }
 
+        /// <summary>
+        /// Create all player rp commands
+        /// </summary>
         void CreatePlayerCommands()
         {
             SChatCommand meCommand = new SChatCommand("/me", "Say action", "/me <message>", (player, args) =>
@@ -41,6 +49,9 @@ namespace Essentials
             meCommand.Register();
         }
 
+        /// <summary>
+        /// Create roleplay configuration file or read it
+        /// </summary>
         void InitConfig()
         {
             roleplayConfigPath = $"{EssentialsPlugin.essentialDirectoryPath}/roleplay.json";
@@ -74,6 +85,9 @@ namespace Essentials
             Setup();
         }
 
+        /// <summary>
+        /// Setup all variables from essential roleplay config
+        /// </summary>
         void Setup()
         {
             server.economy.startBank = config.startBank;

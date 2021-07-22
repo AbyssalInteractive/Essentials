@@ -594,26 +594,32 @@ namespace Essentials
 
                         player.ShowPanelUI(vehColorPanel);
                     })
-                    .AddTabLine("Définir la couleur par html", (ui => player.ShowPanelUI(new UIPanel("Modifier la couleur", UIPanel.PanelType.Input)
-                    .AddButton("Annuler", (ui2 => player.ClosePanel(ui2)))
-                    .AddButton("Valider", (ui2 =>
+                    .AddTabLine("Définir la couleur (hexadécimal)", (ui) =>
                     {
-                        Color color = Nova.HexToColor(ui2.inputText);
-                        uint vehicleId = player.GetVehicleId();
-                        if (vehicleId > 0U)
-                        {
-                            Vehicle component = NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>();
-                            component.Networkcolor = color;
-                            LifeVehicle vehicle = Nova.v.GetVehicle(component.plate);
-                            if (vehicle != null)
+                        UIPanel hexColorPanel = new UIPanel("Modifier la couleur", UIPanel.PanelType.Input)
+                            .AddButton("Annuler", (ui2) => player.ClosePanel(ui2))
+                            .AddButton("Valider", (ui2) =>
                             {
-                                vehicle.color = Nova.ColorToHex(color);
-                                vehicle.Save();
-                            }
-                        }
-                        else
-                            player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
-                    })).SetInputPlaceholder("#ffffff"))))
+                                Color color = Nova.HexToColor(ui2.inputText);
+                                uint vehicleId = player.GetVehicleId();
+                                if (vehicleId > 0U)
+                                {
+                                    Vehicle component = NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>();
+                                    component.Networkcolor = color;
+                                    LifeVehicle vehicle = Nova.v.GetVehicle(component.plate);
+                                    if (vehicle != null)
+                                    {
+                                        vehicle.color = Nova.ColorToHex(color);
+                                        vehicle.Save();
+                                    }
+                                }
+                                else
+                                    player.SendText(string.Format("<color={0}>Vous n'êtes pas dans un véhicule.</color>", LifeServer.COLOR_RED));
+                            })
+                            .SetInputPlaceholder("#ffffff");
+
+                        player.ShowPanelUI(hexColorPanel);
+                    })
                     .AddTabLine("Refuel", (ui) =>
                     {
                         Vehicle vehicle = player.GetClosestVehicle();

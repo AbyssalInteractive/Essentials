@@ -19,7 +19,7 @@ namespace Essentials
         private readonly EssentialAnnouncer announcer = new EssentialAnnouncer();
         private readonly EssentialAdmin admin = new EssentialAdmin();
         private readonly EssentialRoleplay roleplay = new EssentialRoleplay();
-        private readonly EssentialsGlobal global = new EssentialsGlobal();
+        private readonly EssentialGlobal global = new EssentialGlobal();
 
         private LifeServer server;
 

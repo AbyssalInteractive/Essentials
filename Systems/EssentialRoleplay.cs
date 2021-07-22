@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
+using Essentials.Roleplay;
 
 namespace Essentials
 {
@@ -9,7 +10,9 @@ namespace Essentials
     {
         public static string roleplayConfigPath;
 
-        public RoleplayConfig config;
+        public CarDealership carDealership = new CarDealership();
+
+        private RoleplayConfig config;
 
         /// <summary>
         /// Init EssentialRoleplay system
@@ -22,6 +25,8 @@ namespace Essentials
 
             InitConfig();
             CreatePlayerCommands();
+
+            carDealership.Init(config.carDealershipConfig);
         }
 
         /// <summary>
@@ -54,13 +59,16 @@ namespace Essentials
         /// </summary>
         void InitConfig()
         {
+            var settings = new JsonSerializerSettings();
+            settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             roleplayConfigPath = $"{EssentialsPlugin.essentialDirectoryPath}/roleplay.json";
 
             if (!File.Exists(roleplayConfigPath))
             {
                 config = new RoleplayConfig();
 
-                string json = JsonConvert.SerializeObject(config);
+                string json = JsonConvert.SerializeObject(config, settings);
 
                 File.WriteAllText(roleplayConfigPath, json);
             }
@@ -70,9 +78,9 @@ namespace Essentials
 
                 try
                 {
-                    config = JsonConvert.DeserializeObject<RoleplayConfig>(json);
+                    config = JsonConvert.DeserializeObject<RoleplayConfig>(json, settings);
 
-                    string newJson = JsonConvert.SerializeObject(config);
+                    string newJson = JsonConvert.SerializeObject(config, settings);
 
                     File.WriteAllText(roleplayConfigPath, json);
                 }
@@ -95,6 +103,11 @@ namespace Essentials
             server.world.maxRentsPerCharacter = config.maxRentsPerCharacter;
             server.world.maxTerrainsPerCharacter = config.maxTerrainsPerCharacter;
         }
+
+        public override void OnPlayerSpawnCharacter(Player player)
+        {
+            base.OnPlayerSpawnCharacter(player);
+        }
     }
 
     [System.Serializable]
@@ -104,6 +117,23 @@ namespace Essentials
         public int startBank;
         public ushort maxTerrainsPerCharacter = 3;
         public ushort maxRentsPerCharacter = 1;
+
+        public CarDealershipConfig carDealershipConfig = new CarDealershipConfig()
+        {
+            carShopName = "Concessionnaire automobile",
+            shopPosition = new Position(625.585f, 50.05f, 973.712f),
+            carForSales = new CarForSale[]
+            {
+                new CarForSale(16, 3500),
+                new CarForSale(15, 5990),
+                new CarForSale(0, 11990),
+                new CarForSale(8, 17190),
+                new CarForSale(13, 23558),
+                new CarForSale(24, 39550),
+                new CarForSale(10, 64650),
+                new CarForSale(14, 94000)
+            }
+        };
 
         public void Save()
         {

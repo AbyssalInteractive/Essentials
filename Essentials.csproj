@@ -37,7 +37,7 @@
     <Compile Include="Systems\EssentialAdmin.cs" />
     <Compile Include="Systems\EssentialAnnouncer.cs" />
     <Compile Include="Systems\EssentialRoleplay.cs" />
-    <Compile Include="Systems\EssentialsGlobal.cs" />
+    <Compile Include="Systems\EssentialGlobal.cs" />
     <Compile Include="Systems\Roleplay\CarDealership.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -597,7 +597,10 @@ namespace Essentials
                     .AddTabLine("Définir la couleur (hexadécimal)", (ui) =>
                     {
                         UIPanel hexColorPanel = new UIPanel("Modifier la couleur", UIPanel.PanelType.Input)
-                            .AddButton("Annuler", (ui2) => player.ClosePanel(ui2))
+                            .AddButton("Annuler", (ui2) =>
+                            {
+                                player.ClosePanel(ui2);
+                            })
                             .AddButton("Valider", (ui2) =>
                             {
                                 Color color = Nova.HexToColor(ui2.inputText);

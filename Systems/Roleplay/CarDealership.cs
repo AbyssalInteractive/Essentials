@@ -5,6 +5,8 @@ using UnityEngine;
 using Life;
 using Life.PermissionSystem;
 using Life.DB;
+using System.Collections;
+using Life.VehicleSystem;
 
 namespace Essentials.Roleplay
 {
@@ -49,10 +51,13 @@ namespace Essentials.Roleplay
             for(int i = 0; i < config.carForSales.Length; i++)
             {
                 int modelId = config.carForSales[i].modelId;
-                string modelName = Nova.v.vehicleModels[modelId].vehicleName;
-                int price = config.carForSales[i].price;
 
-                carDealerPanel.AddTabLine(modelName, $"{price}€", -1, (ui) =>
+                Vehicle vehicle = Nova.v.vehicleModels[modelId];
+                string modelName = vehicle.vehicleName;
+                int price = config.carForSales[i].price;
+                int iconId = System.Array.IndexOf(Nova.man.icons, vehicle.icon);
+
+                carDealerPanel.AddTabLine(modelName, $"{price}€", iconId, (ui) =>
                 {
                     ShowConfirmPanel(player, modelId, modelName, price);
                 });

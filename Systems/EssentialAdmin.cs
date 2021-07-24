@@ -20,11 +20,7 @@ namespace Essentials
     {
         public static string adminConfigPath;
 
-        public Dictionary<Player, string> tickets
-        {
-            get => tickets;
-            private set => new Dictionary<Player, string>();
-        }
+        public Dictionary<Player, string> tickets = new Dictionary<Player, string>();
 
         private AdminConfig config;
 

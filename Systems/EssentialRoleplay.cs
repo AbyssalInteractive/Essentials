@@ -118,7 +118,7 @@ namespace Essentials
 
             PlayerData playerData = player.GetPlayerData();
 
-            if (player.character.HasBCR && playerData.whitelisted)
+            if (player.character.HasBCR)
             {
                 if (Nova.UnixTimeNow() - 600 < player.character.LastDisconnect)
                 {

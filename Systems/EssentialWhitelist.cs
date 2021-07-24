@@ -313,7 +313,7 @@ namespace Essentials
                 player.SendText($"<color={LifeServer.COLOR_RED}>Votre personnage a été blacklisté pour la raison suivante : {playerData.lastWhitelist.reason}</color>");
 
                 player.Disconnect($"Personnage blacklisté : {playerData.lastWhitelist.reason}");
-            } else
+            } else if(!playerData.whitelisted)
             {
                 UIPanel whiteListPanel = new UIPanel("Whitelist", UIPanel.PanelType.Text)
                     .SetText("Voulez-vous passer la whitelist maintenant ? (elle sera obligatoire à compter du Lundi 2 Août 2021)")

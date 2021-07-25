@@ -278,7 +278,10 @@ namespace Essentials
             PlayerData foundData = EssentialsPlugin.players.Where(p => p.steamId == steamId && p.characterId == characterId).FirstOrDefault();
 
             if (foundData != null)
+            {
                 playerData = foundData;
+                playerData.player = player;
+            }
             else if (playerData != null)
                 EssentialsPlugin.players.Add(playerData);
 

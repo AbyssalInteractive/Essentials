@@ -4,6 +4,7 @@ using Life.UI;
 using Life;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using Essentials.Roleplay;
 
@@ -185,6 +186,9 @@ namespace Essentials
                     for (int i = 0; i < rents.terrains.Length; i++)
                     {
                         uint id = rents.terrains[i].id;
+
+                        if (terrains.terrains.Where(t => t.id == id).Count() > 0)
+                            continue;
 
                         Vector3 pos = Nova.a.GetSpawnablePosition(id);
 

@@ -258,6 +258,22 @@ namespace Essentials
                 }
             });
 
+            SChatCommand stowAllCivilCommand = new SChatCommand("/stowallcivilvehicle", new string[] { "/stowallcivilveh", "/stowallcivil" }, "Stow all spawned vehicle on the map", "/stow(allveh)", (player, args) =>
+            {
+                if (player.account.adminLevel >= 9)
+                {
+                    Vehicle[] vehicles = GameObject.FindObjectsOfType<Vehicle>();
+
+                    foreach (Vehicle vehicle in vehicles)
+                    {
+                        if (vehicle != null && vehicle.vehicleDbId > 0 && vehicle.bizId == 0)
+                        {
+                            Nova.v.StowVehicle(vehicle.vehicleDbId);
+                        }
+                    }
+                }
+            });
+
             SChatCommand bizCommand = new SChatCommand("/editbiz", "Edit the current biz that you're in", "/editbiz", (player, args) =>
             {
                 if (!player.IsAdmin)
@@ -1306,6 +1322,7 @@ namespace Essentials
             vehicleCommand.Register();
             bizCommand.Register();
             stowAllCommand.Register();
+            stowAllCivilCommand.Register();
             stowCommand.Register();
             destroyCommand.Register();
             saveCommand.Register();

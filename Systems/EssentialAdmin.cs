@@ -80,11 +80,137 @@ namespace Essentials
             }
         }
 
+        async void TerrainInfoAsync(Player player, LifeArea area)
+        {
+            player.SendText($"<color={LifeServer.COLOR_ORANGE}>~ Terrain N°{area.areaId} ~</color>");
+
+            if (area.permissions != null)
+            {
+                if(area.permissions.owner != null)
+                {
+                    Characters owner = await LifeDB.FetchCharacter(area.permissions.owner.characterId);
+
+                    if(owner == null)
+                    {
+                        player.SendText($"<color={LifeServer.COLOR_ORANGE}>Ce terrain n'a pas de propriétaire.</color>");
+
+                        return;
+                    }
+
+                    string lastConnect = "Inconnu";
+
+                    long seconds = Nova.UnixTimeNow() - owner.LastDisconnect;
+
+                    long minutes = seconds / 60;
+
+                    if(minutes > 60)
+                    {
+                        long hours = minutes / 60;
+
+                        if(hours > 48)
+                        {
+                            long days = hours / 24;
+
+                            lastConnect = $"Il y a plus de {days} jours.";
+                        }
+                        else
+                        {
+                            lastConnect = $"Il y a {hours}h.";
+                        }
+                    }
+                    else
+                    {
+                        lastConnect = $"Il y a {minutes} min.";
+                    }
+
+                    player.SendText($"<color={LifeServer.COLOR_ORANGE}>Propriétaire: <color=white>{owner.Firstname} {owner.Lastname}</color> Dernière connexion: <color=white>{lastConnect}</color></color>");
+                }
+                else
+                {
+                    player.SendText($"<color={LifeServer.COLOR_ORANGE}>Ce terrain n'a pas de propriétaire.</color>");
+                }
+
+                if (area.permissions.coOwners.Count > 0)
+                {
+                    if(area.permissions.coOwners.Count < 10)
+                    {
+                        foreach (Entity entity in area.permissions.coOwners)
+                        {
+                            Characters coOwner = await LifeDB.FetchCharacter(entity.characterId);
+
+                            string lastConnect = "Inconnu";
+
+                            long seconds = Nova.UnixTimeNow() - coOwner.LastDisconnect;
+
+                            long minutes = seconds / 60;
+
+                            if (minutes > 60)
+                            {
+                                long hours = minutes / 60;
+
+                                if (hours > 48)
+                                {
+                                    long days = hours / 24;
+
+                                    lastConnect = $"Il y a plus de {days} jours.";
+                                }
+                                else
+                                {
+                                    lastConnect = $"Il y a {hours}h.";
+                                }
+                            }
+                            else
+                            {
+                                lastConnect = $"Il y a {minutes} min.";
+                            }
+
+                            player.SendText($"<color={LifeServer.COLOR_ORANGE}>Co-propriétaire: <color=white>{coOwner.Firstname} {coOwner.Lastname}</color> Dernière connexion: <color=white>{lastConnect}</color></color>");
+                        }
+                    }
+                    else
+                    {
+                        player.SendText($"<color={LifeServer.COLOR_ORANGE}>Ce terrain a plus de 10 co-propriétaires, leur affichage est donc impossible.</color>");
+                    }
+                }
+                else
+                {
+                    player.SendText($"<color={LifeServer.COLOR_ORANGE}>Ce terrain n'a pas de co-propriétaires.</color>");
+                }
+            }
+            else
+            {
+                player.SendText($"<color={LifeServer.COLOR_ORANGE}>Ce terrain n'a pas de propriétaire.</color>");
+            }
+        }
+
         /// <summary>
         /// Create all admin commands
         /// </summary>
         void CreateAdminCommands()
         {
+            SChatCommand terrainInfoCommand = new SChatCommand("/terraininfo", new string[] { "/ti" }, "Show terrain information", "/terraininfo", (player, args) =>
+            {
+                if(player.IsAdmin)
+                {
+                    if(player.isInGame && player.setup.areaId > 0)
+                    {
+                        LifeArea area = Nova.a.GetAreaById(player.setup.areaId);
+
+                        if(area != null)
+                        {
+                            TerrainInfoAsync(player, area);
+                        }else
+                        {
+                            player.SendText($"<color={LifeServer.COLOR_RED}>Vous n'êtes pas sur un terrain</color>");
+                        }
+                    }
+                    else
+                    {
+                        player.SendText($"<color={LifeServer.COLOR_RED}>Vous n'êtes pas sur un terrain</color>");
+                    }
+                }
+            });
+
             SChatCommand changeNumberCommand = new SChatCommand("/changenumber", "Change the phone number of the nearest player", "/changenumber", (player, args) =>
             {
                 if (player.account.adminLevel >= 9)
@@ -186,6 +312,33 @@ namespace Essentials
                 else
                 {
                     player.SendText(string.Format("<color={0}>Permissions insuffisantes.</color>", LifeServer.COLOR_RED));
+                }
+            });
+
+            SChatCommand tpPlateCommand = new SChatCommand("/tpveh", "Teleport to vehicle with plate", "/tpveh <plate>", (player, args) =>
+            {
+                if(args.Length > 0)
+                {
+                    if (player.IsAdmin)
+                    {
+                        LifeVehicle lifeVeh = Nova.v.GetVehicle(args[0]);
+
+                        if(lifeVeh == null)
+                        {
+                            player.SendText($"<color={LifeServer.COLOR_RED}>Véhicule inexistant.</color>");
+                            return;
+                        }
+
+                        Vehicle vehicle = Nova.v.GetVehicle(args[0]).instance;
+
+                        if(vehicle == null)
+                        {
+                            player.SendText($"<color={LifeServer.COLOR_RED}>Le véhicule est actuellement au garage.</color>");
+                            return;
+                        }
+
+                        player.setup.TargetSetPosition(vehicle.transform.position);
+                    }
                 }
             });
 
@@ -1297,6 +1450,8 @@ namespace Essentials
                 }
             });
 
+            terrainInfoCommand.Register();
+            unbanCommand.Register();
             weatherCommand.Register();
             giveCommand.Register();
             annoCommand.Register();
@@ -1330,6 +1485,7 @@ namespace Essentials
             refuelAllCommand.Register();
             refuelCommand.Register();
             changeNumberCommand.Register();
+            tpPlateCommand.Register();
         }
 
         public async void Unban(int accountId)

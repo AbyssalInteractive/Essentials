@@ -119,7 +119,7 @@ namespace Essentials
 
             PlayerData playerData = player.GetPlayerData();
 
-            if (player.character.HasBCR)
+            if (player.character.HasBCR && player.character.PrisonTime == 0)
             {
                 if (Nova.UnixTimeNow() - 600 < player.character.LastDisconnect)
                 {

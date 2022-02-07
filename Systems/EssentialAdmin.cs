@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Life.InventorySystem;
+using System.Linq;
 
 namespace Essentials
 {
@@ -1288,6 +1289,18 @@ namespace Essentials
                         .AddButton("Fermer", (ui) =>
                         {
                             player.ClosePanel(ui);
+                        })
+                        .AddButton("Fermer le ticket", (ui) =>
+                        {
+                            int ticketId = ui.selectedTab;
+                            KeyValuePair<Player, string> ticket = this.tickets.ElementAt(ticketId);
+
+                            if(ticket.Key != null)
+                            {
+                                ticket.Key.SendText($"<color={LifeServer.COLOR_RED}>Votre ticket a été fermé par un administrateur.</color>");
+                                this.tickets.Remove(ticket.Key);
+                                player.ClosePanel(ui);
+                            }
                         })
                         .AddButton("Intervenir (TP)", (ui) =>
                         {

@@ -1002,6 +1002,16 @@ namespace Essentials
                     {
                         ui.SelectTab();
                     })
+                    .AddTabLine("Supprimer co-propriétaires", (ui) =>
+                    {
+                        LifeArea area = Nova.a.GetAreaById(player.setup.areaId);
+
+                        area.permissions = new Permissions() { coOwners = new List<Entity>() };
+
+                        area.Save();
+
+                        player.SendText("Co-propriétaires modifiés !");
+                    })
                     .AddTabLine("Modifier propriétaire", (ui) =>
                     {
                         UIPanel proprioPanel = new UIPanel("Modification du proprio", UIPanel.PanelType.Input)
@@ -1123,7 +1133,7 @@ namespace Essentials
                 if (!player.IsAdmin)
                     return;
 
-                EnviroSkyMgr.instance.SetTimeOfDay(12.0f);
+                LightingManager.instance.TimeOfDay = 11f;
             });
 
             SChatCommand nightCommand = new SChatCommand("/night", "Set night", "/night", (player, args) =>
@@ -1131,7 +1141,7 @@ namespace Essentials
                 if (!player.IsAdmin)
                     return;
 
-                EnviroSkyMgr.instance.SetTimeOfDay(20.0f);
+                LightingManager.instance.TimeOfDay = 20f;
             });
 
             SChatCommand morningCommand = new SChatCommand("/morning", "Set morning", "/morning", (player, args) =>
@@ -1139,7 +1149,7 @@ namespace Essentials
                 if (!player.IsAdmin)
                     return;
 
-                EnviroSkyMgr.instance.SetTimeOfDay(8.0f);
+                LightingManager.instance.TimeOfDay = 7f;
             });
 
             SChatCommand timesetCommand = new SChatCommand("/timeset", new string[] { "/time" }, "Set time of day", "/timeset <12,5>", (player, args) =>
@@ -1326,6 +1336,14 @@ namespace Essentials
                 }
             });
 
+            SChatCommand banCommand = new SChatCommand("/ban", "Ban offline player", "/ban", (player, args) =>
+            {
+                if (!player.IsAdmin)
+                    return;
+
+                BanPlayer(player);
+            });
+
             SChatCommand unbanCommand = new SChatCommand("/unban", "Unban player", "/unban", (player, args) =>
             {
                 if (!player.IsAdmin)
@@ -1486,6 +1504,67 @@ namespace Essentials
             refuelCommand.Register();
             changeNumberCommand.Register();
             tpPlateCommand.Register();
+            banCommand.Register();
+        }
+
+        public void BanPlayer(Player player)
+        {
+            UIPanel panel = new UIPanel("Bannir un joueur hors ligne", UIPanel.PanelType.Input)
+                .SetInputPlaceholder("Prénom NOM")
+                .AddButton("Fermer", (ui) =>
+                {
+                    player.ClosePanel(ui);
+                })
+                .AddButton("Suivant", async (ui) =>
+                {
+                    string fullname = ui.inputText;
+
+                    string[] names = fullname.Split(' ');
+
+                    string firstname = names[0];
+                    string lastname = "";
+
+                    for (int i = 1; i < names.Length; i++)
+                    {
+                        if (i > 1)
+                            lastname += $" {names[i]}";
+                        else
+                            lastname += $"{names[i]}";
+                    }
+
+                    Characters character = await LifeDB.FetchCharacter(firstname, lastname);
+
+                    if (character == null)
+                    {
+                        player.SendText($"<color={LifeServer.COLOR_RED}>Joueur introuvable.</color>");
+                        return;
+                    }
+
+                    UIPanel panel2 = new UIPanel("Bannir un joueur hors ligne - temps", UIPanel.PanelType.Input)
+                    .SetInputPlaceholder("Temps en heure...")
+                    .AddButton("Fermer", (ui2) =>
+                    {
+                        player.ClosePanel(ui2);
+                    })
+                    .AddButton("Bannir", async (ui2) =>
+                    {
+                        int number = int.Parse(ui2.inputText);
+
+                        Account account = await LifeDB.FetchAccount(character.AccountId);
+
+                        account.banTimestamp = (number == -1) ? -1 : Nova.UnixTimeNow() + number * 3600;
+
+                        _ = LifeDB.SaveAccount(account);
+
+                        player.SendText($"Joueur {account.username} AKA {character.Firstname} {character.Lastname} banni.");
+
+                        player.ClosePanel(ui2);
+                    });
+
+                    player.ShowPanelUI(panel2);
+                });
+
+            player.ShowPanelUI(panel);
         }
 
         public async void Unban(int accountId)

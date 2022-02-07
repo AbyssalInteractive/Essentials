@@ -56,6 +56,13 @@ namespace Essentials
             });
 
             meCommand.Register();
+
+            SChatCommand playerCountCommand = new SChatCommand("/playercount", new string[] { "/p", "/players"}, "See player count", "/p(layercount)", (player, args) =>
+            {
+                player.SendText($"<color={LifeServer.COLOR_BLUE}>Il y a {server.PlayerCount} citoyen(s) en ville.</color>");
+            });
+
+            playerCountCommand.Register();
         }
 
         /// <summary>

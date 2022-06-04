@@ -1357,6 +1357,14 @@ namespace Essentials
                 BanPlayer(player);
             });
 
+            SChatCommand banSteamCommand = new SChatCommand("/bansteam", "Ban offline player by steam id", "/bansteam", (player, args) =>
+            {
+                if (!player.IsAdmin)
+                    return;
+
+                BanSteamPlayer(player);
+            });
+
             SChatCommand unbanCommand = new SChatCommand("/unban", "Unban player", "/unban", (player, args) =>
             {
                 if (!player.IsAdmin)
@@ -1518,6 +1526,7 @@ namespace Essentials
             changeNumberCommand.Register();
             tpPlateCommand.Register();
             banCommand.Register();
+            banSteamCommand.Register();
         }
 
         public void BanPlayer(Player player)
@@ -1580,6 +1589,46 @@ namespace Essentials
             player.ShowPanelUI(panel);
         }
 
+        public void BanSteamPlayer(Player player)
+        {
+            UIPanel panel = new UIPanel("Bannir un joueur hors ligne par SteamID", UIPanel.PanelType.Input)
+                .SetInputPlaceholder("SteamId")
+                .AddButton("Fermer", (ui) =>
+                {
+                    player.ClosePanel(ui);
+                })
+                .AddButton("Suivant", async (ui) =>
+                {
+                    string steamId = ui.inputText;
+
+                    Account account = await LifeDB.FetchAccount(steamId);
+
+
+                    UIPanel panel2 = new UIPanel("Bannir un joueur hors ligne - temps", UIPanel.PanelType.Input)
+                    .SetInputPlaceholder("Temps en heure...")
+                    .AddButton("Fermer", (ui2) =>
+                    {
+                        player.ClosePanel(ui2);
+                    })
+                    .AddButton("Bannir", async (ui2) =>
+                    {
+                        int number = int.Parse(ui2.inputText);
+
+                        account.banTimestamp = (number == -1) ? -1 : Nova.UnixTimeNow() + number * 3600;
+
+                        _ = LifeDB.SaveAccount(account);
+
+                        player.SendText($"Joueur {account.username} banni.");
+
+                        player.ClosePanel(ui2);
+                    });
+
+                    player.ShowPanelUI(panel2);
+                });
+
+            player.ShowPanelUI(panel);
+        }
+
         public async void Unban(int accountId)
         {
             await LifeDB.Unban(accountId);
@@ -1596,6 +1645,7 @@ namespace Essentials
                 {
                     string text = string.Format("Nouveau ticket de {0} {1}. Message : {2}. \n /tickets pour voir la liste des tickets", new string[] { player.character.Firstname, player.character.Lastname, ticket });
                     server.Players[i].SendText(text);
+                    server.Players[i].setup.TargetPlayClairon(0.2f);
                 }
             }
         }

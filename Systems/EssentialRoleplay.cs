@@ -63,6 +63,16 @@ namespace Essentials
             });
 
             playerCountCommand.Register();
+
+            SChatCommand rulesCommand = new SChatCommand("/regles", new string[] { "/r", "/rules" }, "See rules", "/r(egles)", (player, args) =>
+            {
+                player.SendText($"<color={LifeServer.COLOR_BLUE}>Règles du serveur</color>");
+                player.SendText($"<color={LifeServer.COLOR_BLUE}>1. Voici ma première règle</color>");
+                player.SendText($"<color={LifeServer.COLOR_BLUE}>2. Voici ma seconde règle, n'oubliez pas de bien lire.</color>");
+                player.SendText($"<color={LifeServer.COLOR_BLUE}>3. [...]</color>");
+            });
+
+            rulesCommand.Register();
         }
 
         /// <summary>

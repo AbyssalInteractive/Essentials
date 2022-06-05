@@ -543,7 +543,7 @@ namespace Essentials
                         {
                             int entId = int.Parse(ui2.inputText);
 
-                            Vehicle vehicle = NetworkIdentity.spawned[player.GetVehicleId()].GetComponent<Vehicle>();
+                            Vehicle vehicle = NetworkServer.spawned[player.GetVehicleId()].GetComponent<Vehicle>();
 
                             vehicle.bizId = entId;
 
@@ -575,7 +575,7 @@ namespace Essentials
                         {
                             int ownerId = int.Parse(ui2.inputText);
 
-                            Vehicle vehicle = NetworkIdentity.spawned[player.GetVehicleId()].GetComponent<Vehicle>();
+                            Vehicle vehicle = NetworkServer.spawned[player.GetVehicleId()].GetComponent<Vehicle>();
 
                             LifeVehicle lifeVehicle = Nova.v.GetVehicle(vehicle.vehicleDbId);
 
@@ -773,7 +773,7 @@ namespace Essentials
                                 uint vehicleId = player.GetVehicleId();
                                 if (vehicleId > 0U)
                                 {
-                                    Vehicle component = NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>();
+                                    Vehicle component = NetworkServer.spawned[vehicleId].GetComponent<Vehicle>();
                                     component.Networkcolor = color;
                                     LifeVehicle vehicle = Nova.v.GetVehicle(component.plate);
                                     if (vehicle != null)
@@ -951,10 +951,10 @@ namespace Essentials
 
                     if (vehicleId > 0)
                     {
-                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcFlip();
+                        NetworkServer.spawned[vehicleId].GetComponent<Vehicle>().RpcFlip();
 
-                        NetworkIdentity.spawned[vehicleId].transform.rotation = Quaternion.Euler(Vector3.zero);
-                        NetworkIdentity.spawned[vehicleId].transform.position += Vector3.up * 2f;
+                        NetworkServer.spawned[vehicleId].transform.rotation = Quaternion.Euler(Vector3.zero);
+                        NetworkServer.spawned[vehicleId].transform.position += Vector3.up * 2f;
                     }
                     else
                     {
@@ -1134,7 +1134,7 @@ namespace Essentials
                 if (!player.IsAdmin)
                     return;
 
-                LightingManager.instance.TimeOfDay = 11f;
+                EnviroSkyMgr.instance.SetTimeOfDay(11f);
             });
 
             SChatCommand nightCommand = new SChatCommand("/night", "Set night", "/night", (player, args) =>
@@ -1142,7 +1142,7 @@ namespace Essentials
                 if (!player.IsAdmin)
                     return;
 
-                LightingManager.instance.TimeOfDay = 20f;
+                EnviroSkyMgr.instance.SetTimeOfDay(20f);
             });
 
             SChatCommand morningCommand = new SChatCommand("/morning", "Set morning", "/morning", (player, args) =>
@@ -1150,7 +1150,7 @@ namespace Essentials
                 if (!player.IsAdmin)
                     return;
 
-                LightingManager.instance.TimeOfDay = 7f;
+                EnviroSkyMgr.instance.SetTimeOfDay(6f);
             });
 
             SChatCommand timesetCommand = new SChatCommand("/timeset", new string[] { "/time" }, "Set time of day", "/timeset <12,5>", (player, args) =>
@@ -1213,9 +1213,9 @@ namespace Essentials
 
                     if (vehicleId > 0)
                     {
-                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(NetworkIdentity.spawned[vehicleId].transform.forward);
+                        NetworkServer.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(NetworkServer.spawned[vehicleId].transform.forward);
 
-                        NetworkIdentity.spawned[vehicleId].transform.position += NetworkIdentity.spawned[vehicleId].transform.forward;
+                        NetworkServer.spawned[vehicleId].transform.position += NetworkServer.spawned[vehicleId].transform.forward;
                     }
                     else
                     {
@@ -1232,9 +1232,9 @@ namespace Essentials
 
                     if (vehicleId > 0)
                     {
-                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(-NetworkIdentity.spawned[vehicleId].transform.forward);
+                        NetworkServer.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(-NetworkServer.spawned[vehicleId].transform.forward);
 
-                        NetworkIdentity.spawned[vehicleId].transform.position -= NetworkIdentity.spawned[vehicleId].transform.forward;
+                        NetworkServer.spawned[vehicleId].transform.position -= NetworkServer.spawned[vehicleId].transform.forward;
                     }
                     else
                     {
@@ -1251,9 +1251,9 @@ namespace Essentials
 
                     if (vehicleId > 0)
                     {
-                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(NetworkIdentity.spawned[vehicleId].transform.right);
+                        NetworkServer.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(NetworkServer.spawned[vehicleId].transform.right);
 
-                        NetworkIdentity.spawned[vehicleId].transform.position += NetworkIdentity.spawned[vehicleId].transform.right;
+                        NetworkServer.spawned[vehicleId].transform.position += NetworkServer.spawned[vehicleId].transform.right;
                     }
                     else
                     {
@@ -1270,9 +1270,9 @@ namespace Essentials
 
                     if (vehicleId > 0)
                     {
-                        NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(-NetworkIdentity.spawned[vehicleId].transform.right);
+                        NetworkServer.spawned[vehicleId].GetComponent<Vehicle>().RpcAddPosition(-NetworkServer.spawned[vehicleId].transform.right);
 
-                        NetworkIdentity.spawned[vehicleId].transform.position -= NetworkIdentity.spawned[vehicleId].transform.right;
+                        NetworkServer.spawned[vehicleId].transform.position -= NetworkServer.spawned[vehicleId].transform.right;
                     }
                     else
                     {
@@ -1700,7 +1700,7 @@ namespace Essentials
 
         void ColorVehicle(uint vehicleId, Color color)
         {
-            Vehicle component = NetworkIdentity.spawned[vehicleId].GetComponent<Vehicle>();
+            Vehicle component = NetworkServer.spawned[vehicleId].GetComponent<Vehicle>();
             component.Networkcolor = color;
             LifeVehicle vehicle = Nova.v.GetVehicle(component.plate);
             if (vehicle != null)

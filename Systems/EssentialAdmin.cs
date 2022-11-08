@@ -391,6 +391,14 @@ namespace Essentials
                         if (vehicle != null && vehicle.vehicleDbId > 0)
                         {
                             Nova.v.StowVehicle(vehicle.vehicleDbId);
+                        }else
+                        {
+                            FakeVehicle fake = player.GetClosestFakeVehicle(5f);
+
+                            if(fake != null)
+                            {
+                                Nova.v.StowVehicle(fake.vehicleDbId);
+                            }
                         }
                     }
                 }
@@ -409,6 +417,16 @@ namespace Essentials
                             Nova.v.StowVehicle(vehicle.vehicleDbId);
                         }
                     }
+
+                    FakeVehicle[] fakes = GameObject.FindObjectsOfType<FakeVehicle>();
+
+                    foreach (FakeVehicle vehicle in fakes)
+                    {
+                        if (vehicle != null && vehicle.vehicleDbId > 0)
+                        {
+                            Nova.v.StowVehicle(vehicle.vehicleDbId);
+                        }
+                    }
                 }
             });
 
@@ -421,6 +439,16 @@ namespace Essentials
                     foreach (Vehicle vehicle in vehicles)
                     {
                         if (vehicle != null && vehicle.vehicleDbId > 0 && vehicle.bizId == 0)
+                        {
+                            Nova.v.StowVehicle(vehicle.vehicleDbId);
+                        }
+                    }
+
+                    FakeVehicle[] fakes = GameObject.FindObjectsOfType<FakeVehicle>();
+
+                    foreach (FakeVehicle vehicle in fakes)
+                    {
+                        if (vehicle != null && vehicle.vehicleDbId > 0)
                         {
                             Nova.v.StowVehicle(vehicle.vehicleDbId);
                         }

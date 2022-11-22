@@ -948,7 +948,7 @@ namespace Essentials
                 {
                     if (closestPlayer.GetVehicleId() != 0)
                     {
-                        player.SendText(string.Format("<color={0}>Impossible de mettre en prison, faites le sortir du véhicule !</color>", LifeServer.COLOR_RED));
+                        player.SendText(string.Format("<color={0}>Impossible de lui retirer son BCR, faites le sortir du véhicule !</color>", LifeServer.COLOR_RED));
                     }
                     else
                     {

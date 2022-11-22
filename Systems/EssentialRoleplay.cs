@@ -136,7 +136,36 @@ namespace Essentials
 
             PlayerData playerData = player.GetPlayerData();
 
-            if (player.character.HasBCR && player.character.PrisonTime == 0)
+            bool isWhitelisted = true;
+
+            if (Nova.serverInfo.isWhitelisted)
+            {
+                try
+                {
+                    string data = player.character.WhitelistResponse;
+
+                    if (data == null)
+                    {
+                        isWhitelisted = false;
+                    }
+                    else
+                    {
+                        WhitelistResponse response = JsonUtility.FromJson<WhitelistResponse>(data);
+
+                        player.setup.TargetLockCFM(!response.accepted);
+
+                        isWhitelisted = response.accepted;
+                    }
+                }
+                catch { }
+            }
+            else
+            {
+                player.setup.TargetLockCFM(false);
+                isWhitelisted = true;
+            }
+
+            if (isWhitelisted && player.character.PrisonTime == 0)
             {
                 if (Nova.UnixTimeNow() - 600 < player.character.LastDisconnect)
                 {

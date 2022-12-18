@@ -42,8 +42,9 @@
     <Compile Include="Systems\Roleplay\CarDealership.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-Editor">
       <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Utopia\Library\ScriptAssemblies\Assembly-CSharp-Editor.dll</HintPath>

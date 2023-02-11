@@ -172,7 +172,7 @@ namespace Essentials
                     player.SendText($"<color=green>Téléportation à votre dernière position.</color>");
                     player.setup.TargetSetPosition(new Vector3(player.character.LastPosX, player.character.LastPosY, player.character.LastPosZ));
                 }
-                else if (player.HasBiz() || terrains.terrains.Length > 0)
+                else
                 {
                     UIPanel spawnPanel = new UIPanel("Choix du point d'apparition", UIPanel.PanelType.Tab)
                         .SetText("Choisissez à quel endroit vous souhaitez apparaître.")
@@ -184,6 +184,12 @@ namespace Essentials
                         {
                             ui.SelectTab();
                         });
+
+                    spawnPanel.AddTabLine("Mairie", (ui) =>
+                    {
+                        player.setup.TargetSetPosition(new Vector3(337.4773f, 50.2f, 822.9374f));
+                        player.ClosePanel(ui);
+                    });
 
                     if (player.HasBiz())
                     {

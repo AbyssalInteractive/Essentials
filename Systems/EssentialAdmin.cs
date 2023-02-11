@@ -1458,6 +1458,13 @@ namespace Essentials
                             return;
                         }
 
+                        string data = "";
+
+                        if(item is StateItem)
+                        {
+                            data = (item as StateItem).GetBaseData();
+                        }
+
                         if(!player.setup.inventory.AddItem(itemId, number, ""))
                         {
                             player.SendText($"<color={LifeServer.COLOR_RED}>Vous n'avez pas assez de place dans votre inventaire.</color>");

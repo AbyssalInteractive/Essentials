@@ -1465,7 +1465,7 @@ namespace Essentials
                             data = (item as StateItem).GetBaseData();
                         }
 
-                        if(!player.setup.inventory.AddItem(itemId, number, ""))
+                        if(!player.setup.inventory.AddItem(itemId, number, data))
                         {
                             player.SendText($"<color={LifeServer.COLOR_RED}>Vous n'avez pas assez de place dans votre inventaire.</color>");
                             return;

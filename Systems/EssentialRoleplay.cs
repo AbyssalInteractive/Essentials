@@ -136,7 +136,7 @@ namespace Essentials
 
             PlayerData playerData = player.GetPlayerData();
 
-            bool isWhitelisted = true;
+            bool isWhitelisted = false;
 
             if (Nova.serverInfo.isWhitelisted)
             {
@@ -144,11 +144,7 @@ namespace Essentials
                 {
                     string data = player.character.WhitelistResponse;
 
-                    if (data == null)
-                    {
-                        isWhitelisted = false;
-                    }
-                    else
+                    if (data != null)
                     {
                         WhitelistResponse response = JsonUtility.FromJson<WhitelistResponse>(data);
 

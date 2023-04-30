@@ -44,326 +44,35 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-Editor">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Utopia\Library\ScriptAssemblies\Assembly-CSharp-Editor.dll</HintPath>
+    <Reference Include="Facepunch.Steamworks.Win64, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Mirror, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\Mirror.dll</HintPath>
     </Reference>
-    <Reference Include="BestHTTP">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\BestHTTP.dll</HintPath>
-    </Reference>
-    <Reference Include="CTNAudio">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\CTNAudio.dll</HintPath>
-    </Reference>
-    <Reference Include="CTNLayer">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\CTNLayer.dll</HintPath>
-    </Reference>
-    <Reference Include="CTNVorbis">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\CTNVorbis.dll</HintPath>
-    </Reference>
-    <Reference Include="DissonanceVoip">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\DissonanceVoip.dll</HintPath>
-    </Reference>
-    <Reference Include="Facepunch.Steamworks.Win64">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
-    </Reference>
-    <Reference Include="kcp2k">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\kcp2k.dll</HintPath>
-    </Reference>
-    <Reference Include="Mirror">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Mirror.dll</HintPath>
-    </Reference>
-    <Reference Include="Mirror.Authenticators">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Mirror.Authenticators.dll</HintPath>
-    </Reference>
-    <Reference Include="Mirror.Components">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Mirror.Components.dll</HintPath>
-    </Reference>
-    <Reference Include="Mirror.Examples">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Mirror.Examples.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Mono.Security.dll</HintPath>
+    <Reference Include="Mirror.Components, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\Mirror.Components.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.MemoryProfiler">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.MemoryProfiler.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.ProBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.Csg">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.ProBuilder.Csg.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.KdTree">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.ProBuilder.KdTree.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.Poly2Tri">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.ProBuilder.Poly2Tri.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.Stl">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.ProBuilder.Stl.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Analytics">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Configuration">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Device">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Device.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Environments">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Environments.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Environments.Internal">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Environments.Internal.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Internal">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Internal.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Networking">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Registration">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Registration.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Scheduler">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Scheduler.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Telemetry">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Telemetry.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Threading">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Services.Core.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TerrainTools">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.TerrainTools.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AIModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.AIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ARModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ARModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClothModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GIModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.GIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GridModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.GridModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.InputModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.NVIDIAModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.NVIDIAModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreFontEngineModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreTextEngineModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TLSModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsNativeModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UIElementsNativeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UNETModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityCurlModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityCurlModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VFXModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VideoModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VirtualTexturingModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.VirtualTexturingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VRModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.VRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.WindModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.WindModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.XRModule">
-      <HintPath>..\..\..\..\Documents\UnityProjects\Nova-Life Amboise\ContentBuilder\content\windows_content\Nova-Life_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Nova-Life\Nova-Life_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

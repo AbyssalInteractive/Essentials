@@ -76,6 +76,12 @@ namespace Essentials.Roleplay
                 })
                 .AddButton("Confirmer l'achat", (ui) =>
                 {
+                    if (!player.character.PermisB)
+                    {
+                        player.SendText("Vous n'avez pas le permis de conduire !");
+                        return;
+                    }
+
                     if (player.character.Money < price)
                     {
                         player.SendText("Vous n'avez pas assez d'argent !");

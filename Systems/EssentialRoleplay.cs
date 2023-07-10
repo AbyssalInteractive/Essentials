@@ -183,7 +183,7 @@ namespace Essentials
 
                     spawnPanel.AddTabLine("Mairie", (ui) =>
                     {
-                        player.setup.TargetSetPosition(new Vector3(337.4773f, 50.2f, 822.9374f));
+                        player.setup.TargetSetPosition(MapManager.instance.mairiePosition);
                         player.ClosePanel(ui);
                     });
 

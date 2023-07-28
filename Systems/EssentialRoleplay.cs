@@ -276,7 +276,7 @@ namespace Essentials
         public CarDealershipConfig carDealershipConfig = new CarDealershipConfig()
         {
             carShopName = "Concessionnaire automobile",
-            shopPosition = new Position(625.585f, 50.05f, 973.712f),
+            shopPosition = new Position(MapManager.instance.concessionnaireShop.position.x, MapManager.instance.concessionnaireShop.position.y, MapManager.instance.concessionnaireShop.position.z),
             carForSales = new CarForSale[]
             {
                 new CarForSale(16, 3500),

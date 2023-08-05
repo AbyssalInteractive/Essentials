@@ -88,6 +88,7 @@ namespace Essentials
             if (!File.Exists(roleplayConfigPath))
             {
                 config = new RoleplayConfig();
+                config.carDealershipConfig.shopPosition = new Position(MapManager.instance.concessionnaireShop.position.x, MapManager.instance.concessionnaireShop.position.y, MapManager.instance.concessionnaireShop.position.z);
 
                 string json = JsonConvert.SerializeObject(config, settings);
 
@@ -276,7 +277,6 @@ namespace Essentials
         public CarDealershipConfig carDealershipConfig = new CarDealershipConfig()
         {
             carShopName = "Concessionnaire automobile",
-            shopPosition = new Position(MapManager.instance.concessionnaireShop.position.x, MapManager.instance.concessionnaireShop.position.y, MapManager.instance.concessionnaireShop.position.z),
             carForSales = new CarForSale[]
             {
                 new CarForSale(16, 3500),

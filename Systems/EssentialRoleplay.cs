@@ -88,7 +88,7 @@ namespace Essentials
             if (!File.Exists(roleplayConfigPath))
             {
                 config = new RoleplayConfig();
-                config.carDealershipConfig.shopPosition = new Position(MapManager.instance.concessionnaireShop.position.x, MapManager.instance.concessionnaireShop.position.y, MapManager.instance.concessionnaireShop.position.z);
+                config.carDealershipConfig.shopPosition = new Position(MapManager.instance.concessPosition.x, MapManager.instance.concessPosition.y, MapManager.instance.concessPosition.z);
 
                 string json = JsonConvert.SerializeObject(config, settings);
 
@@ -97,7 +97,6 @@ namespace Essentials
             else
             {
                 string json = File.ReadAllText(roleplayConfigPath);
-
                 try
                 {
                     config = JsonConvert.DeserializeObject<RoleplayConfig>(json, settings);

@@ -1007,7 +1007,18 @@ namespace Essentials
                             })
                             .AddButton("Valider", (ui) =>
                             {
-                                closest.account.adminLevel = int.Parse(ui.inputText);
+                                int newLevel = int.Parse(ui.inputText);
+
+                                if (newLevel > player.account.adminLevel)
+                                {
+                                    player.SendText($"<color={LifeServer.COLOR_RED}>Vous ne pouvez pas définir un rang supérieur au vôtre.</color>");
+                                    return;
+                                }
+
+                                if (newLevel < 0)
+                                    newLevel = 0;
+
+                                closest.account.adminLevel = newLevel;
                                 _ = closest.Save();
                                 player.ClosePanel(ui);
                             });
